@@ -19,17 +19,33 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<style>
 	body {
-			background-color: black;
+			background-color: rgb(28, 26, 41);
 		}
 	.container{
-			background-color: lightslategrey;
-			
+			background-color: lightslategrey;		
 			border-radius: 15px;
+	}
+	.login-form{
+		color: aliceblue;
+	}
+	h2{
+		text-align: center;
+		margin-top:15px;
 	}
 	</style>
 </head>
 <body>
-	
+	{% if not success %}
+	<form class="login-form" action="">
+		<h2>Welcome in ToDo app</h2>
+		<div>Please login or register: 
+		<a class="btn btn-success" href="/login">Login</a>
+			 <a class="btn btn-primary" href="/register">Register</a>
+		</div>
+	</form>
+	{% endif %}
+
+	{% if success %}
 	<div class="container"style="margin-top:20px" >
 		<div style="height: 20px"></div>
 		<p><h1 class="text-center " style="text-decoration: underline;color:white">List of Tasks</h1></p>
@@ -86,6 +102,7 @@
   			{% endfor %}
   			
 		</form>
+		{% endif %}
 		<div id="datum"></div>
 	</div>
 	

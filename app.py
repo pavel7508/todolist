@@ -52,11 +52,11 @@ def delete():
 #edit task
 @app.route("/edit")
 def edit():
-    if request.args.get("submit")=="Save":
-        id=request.args.get("id")
-        task=request.args.get("task")
-        execdate=request.args.get("date")
-        done=request.args.get("done")
+    if request.args.get("submit") == "Save":
+        id = request.args.get("id")
+        task = request.args.get("task")
+        execdate =  request.args.get("date")
+        done = request.args.get("done")
         print(done)
         if done !="1":
             done=0
@@ -67,5 +67,9 @@ def edit():
         id=request.args.get("id")
         record=create_db.get_one_record(id)
         return render_template("edit.html",record=record)
-    
+@app.route("/login")
+def login():
+   return render_template("login.html") 
+
+
 app.run(debug=True,port=3000)
