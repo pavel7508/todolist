@@ -5,15 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Document</title>
+
+    <!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href='{{ url_for("static" ,filename="style.css") }}'>
+    <title>Registration</title>
 </head>
 <body>
-    <h3>Login</h3>
-    <form  action="{{url_for('login')}}" method="POST">
+    <form method="POST" action="{{url_for('register')}}" >
         <div id="login-form">
+            <h3>Register:</h3>
             <input type="text" name="username" id="username" placeholder="Enter your username" required><br>
             <input type="password" name="password" id="password" placeholder="Enter password" required><br>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
             <input type="submit" class="btn btn-light btn-lg" value="Send" name="login-submit">
         </div>
     </form>

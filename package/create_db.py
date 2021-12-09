@@ -15,22 +15,23 @@ def create_table():
 def insert_record(*record_list):
     con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
-    cur.execute("INSERT INTO tasks(task,execdate,ok) VALUES(?,?,?)",(record_list))
+    cur.execute("INSERT INTO tasks(task,execdate,ok,user_id) VALUES(?,?,?,?)",(record_list))
     con.commit()
     con.close()
     
 #load data from database
-def get_data(col="id"):
+def get_data(user_id,col="id"):
     con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
+    print(user_id)
     if col=="savedate":
-        cur.execute("SELECT * FROM tasks where ok=0 ORDER BY id")
+        cur.execute("SELECT * FROM tasks WHERE user_id=user_id and ok=0 ORDER BY id")
     elif col=="execdate":
-        cur.execute("SELECT * FROM tasks WHERE ok=0 ORDER BY execdate DESC")
+        cur.execute("SELECT * FROM tasks WHERE user_id and ok=0 ORDER BY execdate DESC")
     elif col=="id":
-        cur.execute("SELECT * FROM tasks")
+        cur.execute("SELECT * FROM tasks WHERE user_id=user_id")
     elif col =="ok":
-        cur.execute("SELECT * FROM tasks WHERE ok=1 ORDER BY execdate DESC")
+        cur.execute("SELECT * FROM tasks WHERE user_id=user_id and ok=1 ORDER BY execdate DESC")
     records=cur.fetchall()
     con.close()
     return records
