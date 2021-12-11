@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>List of tasks</title>
 
-	
+	<link rel="stylesheet" href='{{ url_for("static" ,filename="style.css") }}'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -38,12 +38,23 @@
 	</style>
 </head>
 <body>
+
 	{% if not success %}
-	<h2>Welcome in ToDo app</h2>
+	<div class="menu">
+		<ul class="menu-item">
+			<li><a href="/">Home</a></li>
+			<li><a href="/login">Login</a></li>
+			<li><a href="/register">Register</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="/contact">Contact</a></li>
+		</ul>
+	</div>
+	<div class="clearfix">
+	 <h2>Welcome in ToDo app</h2>
+    </div>
 	<div class="login-form">	
-		Please login or register: 
-		<a class="btn btn-success" href="/login">Login</a>
-		<a class="btn btn-primary" href="/register">Register</a>
+		<h5>Please login or register </h5>
+		
 		{% with messages=get_flashed_messages() %}
 			{% if messages %}
 				{% for message in messages  %}
@@ -59,7 +70,14 @@
 	{% endif %}
 
 	{% if success %}
-	
+	<div class="menu">
+		<ul class="menu-item">
+			<li><a href="/index">Home</a></li>
+			<li><a href="/logout">Logout</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="/contact">Contact</a></li>
+		</ul>
+	</div>
 	{% with messages=get_flashed_messages() %}
 			{% if messages %}
 				{% for messages in messages  %}

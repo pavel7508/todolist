@@ -6,7 +6,6 @@ from package import admin
 
 app=Flask(__name__)
 
-
 #get session id 
 def get_sessid():
     return os.urandom(16)
@@ -18,7 +17,6 @@ app.config['JSON_AS_ASCII'] = False
 #index page
 @app.route("/")
 def home():
-
     return render_template("index.html",success=False)
     #identify=request.cookies.get('sessid',None)
     #send cookie
@@ -27,8 +25,6 @@ def home():
     #resp=make_response(render_template("index.html",records=records))
     #resp.set_cookie('sessid',get_sessid(),time.time()+2000)
     #return resp
-
-#
 @app.route("/todolist", methods=["POST","GET"])
 def todolist():
     user=session["user_id"]
@@ -98,6 +94,7 @@ def login():
             return redirect(url_for("todolist"))
            # return render_template("index.html",userid=user_id,success=True,username=username)
         else:
+            flash("Username or password is incorrect")
             return render_template("index.html",success=False)
     return render_template("login.html")
 

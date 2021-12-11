@@ -1,12 +1,41 @@
 body {
     background-color: rgb(28, 26, 41);
 }
+/*index.html menu */
+ul{
+    background-color: black;
+    overflow: hidden;
+    margin:0px;
+    padding:0px;
+    line-height: 3rem;
+}
+li{
+    list-style-type:none;
+    float: left;
+    width:100px;
+
+}
+
+li a{
+    padding-right: 5px;
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 16px;
+}
+li a:hover{
+    background-color: rgb(114, 241, 41);
+    border-radius: 5px;
+    color:white;
+    
+}
+
 /* login.html */
 h3{
     text-align: center;
     color: aliceblue;
     margin-top: 10px;
 }
+
 #login-form{
     text-align: center;
     position: absolute;
@@ -19,16 +48,24 @@ h3{
     border-radius: 7px;
     text-align: center;
 }
-#password{
+#password,#password1{
     line-height: 3rem;
     margin-bottom: 10px;
     border-radius: 7px;
     text-align: center;
 }
+
 #email{
     line-height: 3rem;
     margin-bottom: 10px;
     border-radius: 7px;
     text-align: center;
+}
+/*registr.html*/
+#warning{
+    color: darkred;
+}
+.clearfix{
+    clear:both;
 }
 

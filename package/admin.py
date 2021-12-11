@@ -5,20 +5,22 @@ from werkzeug.security import generate_password_hash, check_password_hash
 def login(username,password):
     con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
-    
     sql="SELECT *  FROM user where username=?"
     cur.execute(sql,(username,))
     record=cur.fetchone()
-    password_hash=record[2]
-    print(password_hash)
-    password=check_password_hash(password_hash,password)
-    print(password)
-    user_id=record[0]
-    con.close()
-    if password :
-        return user_id
-    else:
+    if not record:
         return False
+    else:
+        password_hash=record[2]
+        print(password_hash)
+        password=check_password_hash(password_hash,password)
+        print(password)
+        user_id=record[0]
+        con.close()
+        if password :
+            return user_id
+        else:
+            return False
 
 def new_user(username,password,email=0):
     con=sqlite3.connect("package/db/todolist.db")
