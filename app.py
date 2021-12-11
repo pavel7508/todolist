@@ -31,19 +31,18 @@ def home():
 #
 @app.route("/todolist", methods=["POST","GET"])
 def todolist():
-    user_id=session["user_id"]
-    print(user_id) 
-    records=create_db.get_data(user_id,"execdate")
+    user=session["user_id"]
+    print(type(user) )
+    records=create_db.get_data(user,"execdate")
     if request.args.get("submit")=="Savedate":
-        
-        records=create_db.get_data(session["user_id"],"savedate")
+        records=create_db.get_data(user,"savedate")
       
     elif request.args.get("submit")=="History":
-        records=create_db.get_data(user_id,"ok")
+        records=create_db.get_data(user,"ok")
     elif request.args.get("submit")=="All":
-        records=create_db.get_data(user_id)
+        records=create_db.get_data(user)
    
-    if user_id:
+    if user:
         
         return render_template("index.html",records=records,success=True)
     return render_template("index.html",success=False)     
@@ -97,7 +96,7 @@ def login():
             session["user_id"]=user_id
             session["user"]=username
             return redirect(url_for("todolist"))
-           # return render_template("index.html",user_id=user_id,success=True,username=username)
+           # return render_template("index.html",userid=user_id,success=True,username=username)
         else:
             return render_template("index.html",success=False)
     return render_template("login.html")
