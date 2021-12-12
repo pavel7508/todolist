@@ -112,5 +112,5 @@ def register():
             flash("Username already exists")
             return render_template("index.html")
     return render_template("registr.html")
-
-app.run(debug=True,port=3000)
+if __name__ == "__main__":
+    app.run(debug=True,port=3000)
