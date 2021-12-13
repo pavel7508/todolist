@@ -1,14 +1,9 @@
-import sqlite3
 from flask import Flask,request,url_for,session,render_template,make_response,flash,redirect
 from werkzeug.security import generate_password_hash, check_password_hash
-from os import path
-
-ROOT = path.dirname(path.realpath(__file__))
-
-print(ROOT)
+import mysql.connector
 
 def login(username,password):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=mysql.connector.connect(host="pavzym.mysql.pythonanywhere-services.com",user="pavzym",passwd="",database="pavzym$todolist")
     cur=con.cursor()
     sql="SELECT *  FROM user where username=?"
     cur.execute(sql,(username,))
@@ -28,12 +23,10 @@ def login(username,password):
             return False
 
 def new_user(username,password,email=0):
-    #con = sqlite3.connect(path.join(ROOT, "todolist.db"))
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
-    print(con)
+    con=mysql.connector.connect(host="pavzym.mysql.pythonanywhere-services.com",user="pavzym",passwd="",database="pavzym$todolist")
     cur=con.cursor()
     user_checked=check_user(username)
-
+    
     if user_checked:
         return False
     else :
@@ -41,10 +34,10 @@ def new_user(username,password,email=0):
         cur.execute("INSERT INTO user(username,password,email) VALUES (?,?,?)",(username,password,email))
         con.commit()
         con.close()
-        return True
+        return True     
 
 def check_user(username):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=mysql.connector.connect(host="pavzym.mysql.pythonanywhere-services.com",user="pavzym",passwd="",database="pavzym$todolist")
     cur=con.cursor()
     sql="SELECT username from user where username=?"
     cur.execute(sql,(username,))
@@ -54,4 +47,3 @@ def check_user(username):
         return True
     else:
         return False
-

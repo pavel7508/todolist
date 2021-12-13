@@ -18,14 +18,39 @@
     <title>Registration</title>
 </head>
 <body>
-    <form method="POST" action="{{url_for('register')}}" >
+    <div class="menu">
+		<ul class="menu-item">
+			<li><a href="/">Home</a></li>
+			<li><a href="/login">Login</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="/contact">Contact</a></li>
+		</ul>
+        </div>
+    <form name="register-form" method="POST" action="{{url_for('register')}}" onsubmit="return validateForm() " >
         <div id="login-form">
             <h3>Register:</h3>
             <input type="text" name="username" id="username" placeholder="Enter your username" required><br>
             <input type="password" name="password" id="password" placeholder="Enter password" required><br>
+            <input type="password" name="password1" id="password1" placeholder="Re-enter password" required><br>
+            <div id="warning"></div>
             <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
             <input type="submit" class="btn btn-light btn-lg" value="Send" name="login-submit">
         </div>
+        
     </form>
+    
+    <script>
+    function validateForm(){
+       let x1=document.forms["register-form"]["password"].value
+       let x2=document.forms["register-form"]["password1"].value
+        if (x1==x2){
+            return true;
+        }else {
+            
+            document.getElementById("warning").innerHTML="Password is not equal!!!";   
+            return false;
+        }
+    }
+    </script>
 </body>
 </html>
