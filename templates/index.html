@@ -72,10 +72,13 @@
 	{% if success %}
 	<div class="menu">
 		<ul class="menu-item">
-			<li><a href="/index">Home</a></li>
-			<li><a href="/logout">Logout</a></li>
+			<li><a href="/">Home</a></li>
 			<li><a href="/about">About</a></li>
 			<li><a href="/contact">Contact</a></li>
+			{% if user %}
+				<li class="session">{{ user }}</li>
+				<li class="session" ><a href="/logout">Logout</a></li>
+			{% endif %}
 		</ul>
 	</div>
 	{% with messages=get_flashed_messages() %}
@@ -93,8 +96,8 @@
 		<form action="/todolist">
 			
 			<div class="form-row">
-				<a href="/add"class="btn btn-success col-sm-1" name="add">Add</a>
-				<a href="" onclick="print()" class="btn btn-light col-sm-1 offset-10 " name="Print">Print</a>
+				<a href="/add"class="btn btn-success col-1" name="add">Add</a>
+				<a href="" onclick="print()" class="btn btn-light col-1 offset-10 " name="Print">Print</a>
 			</div>
 				
 		
@@ -111,9 +114,9 @@
 		</form>
 		<div class="row" >
 			<!--<div class="col-sm-1">#</div>-->
-			<div class="col-sm-1">Done:</div>
-			<div class="col-sm-7">Task:</div>
-			<div class="col-sm-2 ">Deadline:</div>
+			<div class="col-md-1">Done:</div>
+			<div class="col-md-7">Task:</div>
+			<div class="col-md-2 ">Deadline:</div>
 			
 		</div>
 		<hr>
@@ -124,17 +127,21 @@
 				
 				<!--<input type="text" readonly="readonly" value="{{ record[0] }}" name="id" class=" form-control col-sm-1">-->
 				{% if record[3]==1 %}
-  					<input type="checkbox" value=1 disabled checked id="checkbox"  class=" form-control col-sm-1 ifchecked">
-  				{% else %}	
-  					<input type="checkbox" value=0 disabled id="checkbox" class=" form-control col-sm-1 ifchecked">
+				
+  					<input type="radio" value=1 disabled checked id="checkbox"  class=" form-control col-md-1  ifchecked">
+			
+  				{% else %}
+					
+  					<input type="radio" value=0 disabled id="checkbox" class=" form-control col-md-1 ifchecked">
+			    
   				{% endif %}
-  				<input type="text" readonly="readonly" class="form-control col-sm-8" name="ukol" id="ukol" value="{{ record[1] }}" >
+  				<input type="text" readonly="readonly" class="form-control col-xl-7" name="ukol" id="ukol" value="{{ record[1] }}" >
 
-  				<input type="text" readonly="readonly" class="form-control-date col-sm-2 datum3"  name="execdate"  value="{{ record[2] }}">
+  				<input type="text" readonly="readonly" class="form-control-date col-md-2 datum3"  name="execdate"  value="{{ record[2] }}">
   				
-				<a href="/edit?id={{record[0]}}"  class=" col-sm-1 btn btn-success" name="edit">Edit</a>
+				<a href="/edit?id={{record[0]}}"  class=" col-md-1 btn btn-success" name="edit">Edit</a>
 
-  				<a href="/del?id={{ record[0] }}"  class="col-sm-1 btn btn-danger" name="delete" >Delete</a>
+  				<a href="/del?id={{ record[0] }}"  class="col-md-1 btn btn-danger" name="delete" >Delete</a>
 
   				
   			</div>
