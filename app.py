@@ -112,5 +112,15 @@ def register():
             flash("Username already exists")
             return render_template("index.html")
     return render_template("registr.html")
+
+#about template
+@app.route("/about")
+def about():
+    user=session.get("user",None)
+    if user:
+        return render_template("about.html",user=user,success=True)
+    return render_template("about.html",success=False)
+
+    
 if __name__ == "__main__":
     app.run(debug=True,port=3000)
