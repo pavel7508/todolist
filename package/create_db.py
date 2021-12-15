@@ -4,7 +4,7 @@ print("Připojení do databáze ok")
 
 #insert record into table
 def insert_record(*record_list):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     cur.execute("INSERT INTO tasks(task,execdate,ok,user_id) VALUES(?,?,?,?)",(record_list))
     con.commit()
@@ -12,7 +12,7 @@ def insert_record(*record_list):
 
 #load data from database
 def get_data(user,col="id"):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     print(user)
     if col=="savedate":
@@ -31,7 +31,7 @@ def get_data(user,col="id"):
     con.close()
     return records
 def get_one_record(a):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     sql="SELECT * FROM tasks WHERE id=?"
     cur.execute(sql,(a,))
@@ -41,7 +41,7 @@ def get_one_record(a):
 
 #update_database
 def set_data(column,value,expression):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     if column=="task":
         sql="UPDATE tasks SET task=? where id=?"
@@ -58,7 +58,7 @@ def set_data(column,value,expression):
     con.commit()
     con.close()
 def update_record(idd,task,execdate,ok):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     sql="UPDATE tasks SET task=?,execdate=?,ok=?  WHERE id=?"
     cur.execute(sql,(task,execdate,ok,idd))
@@ -66,7 +66,7 @@ def update_record(idd,task,execdate,ok):
     con.close()
 #delete record
 def del_record(expression):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     sql="DELETE FROM tasks WHERE id=?"
     cur.execute(sql,(expression,))

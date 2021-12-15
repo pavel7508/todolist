@@ -1,9 +1,12 @@
 body {
-    background-color: rgb(28, 26, 41);
+    background-color : rgb(28, 26, 41);
+}
+.container{
+    background-color : rgb(28, 26, 41);
 }
 /*index.html menu */
 ul{
-    background-color: black;
+    background-color: black ;
     overflow: hidden;
     margin:0px;
     padding:0px;
@@ -32,6 +35,19 @@ li a:hover{
     float:right;
     color:aliceblue;
     width:200px;
+}
+.column-name{
+    color:aliceblue;
+}
+.login-form{
+    color: aliceblue;
+    text-align: center;
+    margin-top: 200px;
+}
+h2{
+    color: aliceblue;
+    text-align: center;
+    margin-top:15px;
 }
 
 /* login.html */
@@ -70,6 +86,9 @@ h3{
 #warning{
     color: darkred;
 }
+
+
+
 .clearfix{
     clear:both;
 }

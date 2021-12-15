@@ -8,7 +8,7 @@ ROOT = path.dirname(path.realpath(__file__))
 print(ROOT)
 
 def login(username,password):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     sql="SELECT *  FROM user where username=?"
     cur.execute(sql,(username,))
@@ -29,7 +29,7 @@ def login(username,password):
 
 def new_user(username,password,email=0):
     #con = sqlite3.connect(path.join(ROOT, "todolist.db"))
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     print(con)
     cur=con.cursor()
     user_checked=check_user(username)
@@ -44,7 +44,7 @@ def new_user(username,password,email=0):
         return True
 
 def check_user(username):
-    con=sqlite3.connect("/home/pavzym/mysite/package/db/todolist.db")
+    con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
     sql="SELECT username from user where username=?"
     cur.execute(sql,(username,))
