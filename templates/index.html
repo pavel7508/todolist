@@ -21,24 +21,11 @@
 	body {	
 		background-color: rgb(28, 26, 41);
 		}
-	.container{
-			background-color: lightslategrey;		
-			border-radius: 15px;
-	}
-	.login-form{
-		color: aliceblue;
-		text-align: center;
-		margin-top: 200px;
-	}
-	h2{
-		color: aliceblue;
-		text-align: center;
-		margin-top:15px;
-	}
+	
+	
 	</style>
 </head>
 <body>
-
 	{% if not success %}
 	<div class="menu">
 		<ul class="menu-item">
@@ -76,7 +63,7 @@
 			<li><a href="/about">About</a></li>
 			<li><a href="/contact">Contact</a></li>
 			{% if user %}
-				<li class="session">{{ user }}</li>
+				<li class="session"> Logged as: {{ user }}</li>
 				<li class="session" ><a href="/logout">Logout</a></li>
 			{% endif %}
 		</ul>
@@ -124,20 +111,20 @@
 		<form action="" >
 			{% for record in records %}
 			<div class="input-group datum2">
-				
+				<input type="text" readonly="readonly" class="form-control col-md-7" name="ukol" id="ukol" value="{{ record[1] }}" >
+
+  				<input type="text" readonly="readonly" class="form-control-date col-md-2 datum3"  name="execdate"  value="{{ record[2] }}">
+  				
 				<!--<input type="text" readonly="readonly" value="{{ record[0] }}" name="id" class=" form-control col-sm-1">-->
 				{% if record[3]==1 %}
 				
-  					<input type="radio" value=1 disabled checked id="checkbox"  class=" form-control col-md-1  ifchecked">
+  					<input type="checkbox" value=1 disabled checked id="checkbox"  class=" form-control col-md-1  ifchecked">
 			
   				{% else %}
 					
-  					<input type="radio" value=0 disabled id="checkbox" class=" form-control col-md-1 ifchecked">
+  					<input type="checkbox" value=0 disabled id="checkbox" class=" form-control col-md-1 ifchecked">
 			    
   				{% endif %}
-  				<input type="text" readonly="readonly" class="form-control col-xl-7" name="ukol" id="ukol" value="{{ record[1] }}" >
-
-  				<input type="text" readonly="readonly" class="form-control-date col-md-2 datum3"  name="execdate"  value="{{ record[2] }}">
   				
 				<a href="/edit?id={{record[0]}}"  class=" col-md-1 btn btn-success" name="edit">Edit</a>
 
@@ -154,29 +141,34 @@
 	</div>
 	
 	<script>
-	function checkdate(odstavec,ifchecked){
-		datum1=new Date(odstavec.value);
-		hodnota=ifchecked.value;
-		console.log(datum1)
-		var datum= new Date();
-		var sec=datum.getTime();
-		
-		if ((datum1.getTime() < sec)&&(hodnota==0)){
-			odstavec.style.backgroundColor="red";
+		function checkdate(odstavec,ifchecked){
+			datum1=new Date(odstavec.value);
+			hodnota=ifchecked.value;
+			console.log(datum1)
+			var datum= new Date();
+			var sec=datum.getTime();
+			let diff=((datum1.getTime()-sec)/(1000*60*60*24));
+			console.log(diff);
+			if ((datum1.getTime() < sec)&&(hodnota==0)){
+				odstavec.style.backgroundColor="red";
+			}else if((diff < 3)&&(hodnota==0)){
+				odstavec.style.backgroundColor="yellow";
+	
+			};
+		};
+		var a=document.getElementsByClassName("datum3");
+		var b=document.getElementsByClassName("ifchecked");
+		for (i=0;i<a.length;i++){
+			checkdate(a[i],b[i]);
+			console.log(b[i]);
 		}
-	};
-	var a=document.getElementsByClassName("datum3");
-	var b=document.getElementsByClassName("ifchecked");
-	for (i=0;i<a.length;i++){
-		checkdate(a[i],b[i]);
-		console.log(b[i]);
-	}
 	
-	$("#submenu").hide();
-	$("#item").click(function(){
-		$("#submenu").slideToggle({width:'200px'},500);
+		$("#submenu").hide();
+		$("#item").click(function(){
+			$("#submenu").slideToggle({width:'200px'},500);
 	
-	});
+		});
+		</script>
 	</script>
 	
 </body>

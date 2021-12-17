@@ -17,31 +17,34 @@ app.config['JSON_AS_ASCII'] = False
 #index page
 @app.route("/")
 def home():
+    user=session.get("user",None)
+    if user:
+        return redirect(url_for("todolist"))
     return render_template("index.html",success=False)
     #identify=request.cookies.get('sessid',None)
     #send cookie
-    # if identify:        
+    # if identify:
     #    return render_template('index.html',identify=identify,records=records)
     #resp=make_response(render_template("index.html",records=records))
     #resp.set_cookie('sessid',get_sessid(),time.time()+2000)
     #return resp
 @app.route("/todolist", methods=["POST","GET"])
 def todolist():
-    user=session["user_id"]
-    print(type(user) )
-    records=create_db.get_data(user,"execdate")
+    user_id=session["user_id"]
+    user=session["user"]
+    records=create_db.get_data(user_id,"execdate")
     if request.args.get("submit")=="Savedate":
-        records=create_db.get_data(user,"savedate")
-      
+        records=create_db.get_data(user_id,"savedate")
+
     elif request.args.get("submit")=="History":
-        records=create_db.get_data(user,"ok")
+        records=create_db.get_data(user_id,"ok")
     elif request.args.get("submit")=="All":
-        records=create_db.get_data(user)
-   
+        records=create_db.get_data(user_id)
+
     if user:
-        
-        return render_template("index.html",records=records,success=True)
-    return render_template("index.html",success=False)     
+        print(user)
+        return render_template("index.html",user=user,records=records,success=True)
+    return render_template("index.html",success=False) 
 #add task   
 @app.route("/add")
 def add_task():
@@ -112,6 +115,15 @@ def register():
             flash("Username already exists")
             return render_template("index.html")
     return render_template("registr.html")
+
+@app.route("/logout")
+def logout():
+    user=session.get("user",None)
+    if user:
+        session.pop("user")
+        session.pop("user_id")
+        return redirect(url_for("home"))
+    return render_template("index.html",success=False)
 
 #about template
 @app.route("/about")

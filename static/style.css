@@ -32,6 +32,17 @@ li a:hover{
     color:aliceblue;
     width:200px;
 }
+.login-form{
+    color: aliceblue;
+    text-align: center;
+    margin-top: 200px;
+}
+h2{
+    color: aliceblue;
+    text-align: center;
+    margin-top:15px;
+}
+
 @media only screen and (max-width: 600px) {
   [class*="col-"] {
   width: 100%;

@@ -1,81 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About app</title>
-    <link rel="stylesheet" href='{{ url_for("static" ,filename="style.css") }}'>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% extends "base.html" %}
 
-    <!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<style>
-   body {
-	background-color: rgb(28, 26, 41);
-    }
-</style>
-</head>
-<body>
-    {% if not success %}
-	<div class="menu">
-		<ul class="menu-item">
-			<li><a href="/">Home</a></li>
-			<li><a href="/login">Login</a></li>
-			<li><a href="/register">Register</a></li>
-			<li><a href="/about">About</a></li>
-			<li><a href="/contact">Contact</a></li>
-
-		</ul>
-	</div>
-	
-	 <h2 class="text-white text-center">Welcome in ToDo app</h2>
-    </div>
-	
-
-		{% with messages=get_flashed_messages() %}
-			{% if messages %}
-				{% for message in messages  %}
-					<h6>{{ message }}</h6>
-				{% endfor %}
-			{% endif %}
-		{% endwith %}
-
-	</div>
-
-
-
-	{% endif %}
-
-	{% if success %}
-	<div class="menu">
-		<ul class="menu-item">
-			<li><a href="/">Home</a></li>
-			<li><a href="/logout">Logout</a></li>
-			<li><a href="/about">About</a></li>
-			<li><a href="/contact">Contact</a></li>
-			{% if user %}
-			<li id="session">Logged as: {{ user }}</li>
-			{% endif %}
-		</ul>
-        
-	</div>
-	{% with messages=get_flashed_messages() %}
-			{% if messages %}
-				{% for messages in messages  %}
-					{{ message }}
-				{% endfor %}
-			{% endif %}
-	{% endwith %}
-    {% endif %}
+{% block content %}
+<h2 class="text-white text-center">About App</h2>
     <div class="text-white">
         This application is used to record tasks with deadlines , red marked deadlines indicate unfulfilled tasks in the deadline , yellow indicate that they need to be completed within three days. This application is my first attempt at programming, so please rate it in the Contact section so that I can continue to develop. Thank you Pavel Zýma
-        </div>
-</body>
-</html>
+    </div>
+{% endblock %}
