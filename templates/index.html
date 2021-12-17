@@ -63,7 +63,7 @@
 			<li><a href="/about">About</a></li>
 			<li><a href="/contact">Contact</a></li>
 			{% if user %}
-				<li class="session"> Logged as: {{ user }}</li>
+				<li class="session"> {{ user }}</li>
 				<li class="session" ><a href="/logout">Logout</a></li>
 			{% endif %}
 		</ul>
@@ -83,7 +83,7 @@
 		<form action="/todolist">
 			
 			<div class="form-row">
-				<a href="/add"class="btn btn-success col-1" name="add">Add</a>
+				<a href="/add"class="btn btn-success col-sm-1" name="add">Add</a>
 				<a href="" onclick="print()" class="btn btn-light col-1 offset-10 " name="Print">Print</a>
 			</div>
 				
@@ -126,9 +126,9 @@
 			    
   				{% endif %}
   				
-				<a href="/edit?id={{record[0]}}"  class=" col-md-1 btn btn-success" name="edit">Edit</a>
+				<a href="/edit?id={{record[0]}}"  class="col-1 btn btn-success" name="edit">Edit</a>
 
-  				<a href="/del?id={{ record[0] }}"  class="col-md-1 btn btn-danger" name="delete" >Delete</a>
+  				<a href="/del?id={{ record[0] }}"  class="col-1 btn btn-danger" name="delete" >Delete</a>
 
   				
   			</div>

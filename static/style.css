@@ -43,9 +43,9 @@ h2{
     margin-top:15px;
 }
 
-@media only screen and (max-width: 600px) {
-  [class*="col-"] {
-  width: 100%;
+@media only screen and (max-width: 576px) {
+  a.col-1 {
+    max-width: 15%;
 
   }
 }
