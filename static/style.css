@@ -28,15 +28,11 @@ li a:hover{
     
 }
 .session{
-    float:right;
-    color:aliceblue;
-    width:200px;
-}
-.login-form{
-    color: aliceblue;
+    color: #007bff;
     text-align: center;
-    margin-top: 200px;
+    
 }
+
 h2{
     color: aliceblue;
     text-align: center;
@@ -62,27 +58,15 @@ h3{
     left:50%;
     transform: translate(-50%, 0);
     }
-#username{
-    line-height: 3rem;
-    margin-bottom: 10px;
-    border-radius: 7px;
-    text-align: center;
-}
-#password,#password1{
+#username,#password,#password1,#email{
     line-height: 3rem;
     margin-bottom: 10px;
     border-radius: 7px;
     text-align: center;
 }
 
-#email{
-    line-height: 3rem;
-    margin-bottom: 10px;
-    border-radius: 7px;
-    text-align: center;
-}
 /*registr.html*/
-#warning{
+.warning{
     color: darkred;
 }
 .clearfix{
