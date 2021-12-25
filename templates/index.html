@@ -1,83 +1,14 @@
-<?php
-?>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>List of tasks</title>
+    {% extends "base.html" %}
 
-	<link rel="stylesheet" href='{{ url_for("static" ,filename="style.css") }}'>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	 
 
-    <!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<style>
-	body {	
-		background-color: rgb(28, 26, 41);
-		}
-		.login-form{
-		color: aliceblue;
-		text-align: center;
-		margin-top: 200px;
-	}
-	
-	</style>
-</head>
-<body>
-	{% if not success %}
-	<ul class="nav justify-content-center">
-		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-		<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-		<li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-		<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-		<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-	</ul>
-	<div class="clearfix">
-	 <h2>Welcome in ToDo app</h2>
-    </div>
-	<div class="login-form">	
-		<h5>Please login or register </h5>
-		
-		{% with messages=get_flashed_messages() %}
-			{% if messages %}
-				{% for message in messages  %}
-					<h6><span class="warning">{{ message }}</span></h6>
-				{% endfor %}
-			{% endif %}
-		{% endwith %}
-	    
-		
-	</div>
-		
-		
-
-	{% endif %}
-
-	{% if success %}
-	<ul class="nav justify-content-center">
-		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-		<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-		<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-		{% if user %}
-		<li class="nav-item" ><a class="nav-link" href="/logout">Logout</a></li>
-		<li class="session nav-item"><a class="nav-link" href="#">{{ user }}</a></li>
+    {% block content%}
+		{% if not success %}
+	    <h2 class="text-white">Welcome in ToDo app</h2>
+		<h5 class="text-white text-center my-5">Please login or register </h5>
 		{% endif %}
-	</ul>
-	<div class="warning">
-	{% with messages=get_flashed_messages() %}
-			{% if messages %}
-				{% for messages in messages  %}
-					{{ message }}
-				{% endfor %}
-			{% endif %}
-		{% endwith %}
-	</div>
+		
+	{% if success %}
 	<div class="container"style="margin-top:20px" >
 		<div style="height: 20px"></div>
 		<p><h1 class="text-center " style="text-decoration: underline;color:white">List of Tasks</h1></p>
@@ -138,40 +69,9 @@
   			{% endfor %}
   			
 		</form>
+		</div>
 		{% endif %}
-		<div id="datum"></div>
-	</div>
+		
 	
-	<script>
-		function checkdate(odstavec,ifchecked){
-			datum1=new Date(odstavec.value);
-			hodnota=ifchecked.value;
-			console.log(datum1)
-			var datum= new Date();
-			var sec=datum.getTime();
-			let diff=((datum1.getTime()-sec)/(1000*60*60*24));
-			console.log(diff);
-			if ((datum1.getTime() < sec)&&(hodnota==0)){
-				odstavec.style.backgroundColor="red";
-			}else if((diff < 3)&&(hodnota==0)){
-				odstavec.style.backgroundColor="yellow";
+	{% endblock %}	
 	
-			};
-		};
-		var a=document.getElementsByClassName("datum3");
-		var b=document.getElementsByClassName("ifchecked");
-		for (i=0;i<a.length;i++){
-			checkdate(a[i],b[i]);
-			console.log(b[i]);
-		}
-	
-		$("#submenu").hide();
-		$("#item").click(function(){
-			$("#submenu").slideToggle({width:'200px'},500);
-	
-		});
-		</script>
-	</script>
-	
-</body>
-</html>

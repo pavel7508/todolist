@@ -32,12 +32,7 @@
 			<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
 			<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 		</ul>
-	
-	
-	 
     <div>
-	
-
 		{% with messages=get_flashed_messages() %}
 			{% if messages %}
 				{% for message in messages  %}
@@ -45,7 +40,6 @@
 				{% endfor %}
 			{% endif %}
 		{% endwith %}
-
 	</div>
 
 	{% endif %}
@@ -53,11 +47,11 @@
 	{% if success %}
 		<ul class="nav justify-content-center">
 			<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-			<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+			<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 			<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 			{% if user %}
             <li class="nav-item" ><a class="nav-link" href="/logout">Logout</a></li>
-			<li class="session nav-item">{{ user }}</li>
+			<li class="nav-item"><a class="nav-link" href="#">{{ user }}</a> </li>
 			{% endif %}
 		</ul>
         
@@ -72,6 +66,56 @@
     {% endif %}
 
     {% block content %}{% endblock %}
-
+	<script>
+		function checkdate(odstavec,ifchecked){
+			datum1=new Date(odstavec.value);
+			hodnota=ifchecked.value;
+			console.log(datum1)
+			var datum= new Date();
+			var sec=datum.getTime();
+			let diff=((datum1.getTime()-sec)/(1000*60*60*24));
+			console.log(diff);
+			if ((datum1.getTime() < sec)&&(hodnota==0)){
+				odstavec.style.backgroundColor="red";
+			}else if((diff < 3)&&(hodnota==0)){
+				odstavec.style.backgroundColor="yellow";
+	
+			};
+		};
+		var a=document.getElementsByClassName("datum3");
+		var b=document.getElementsByClassName("ifchecked");
+		for (i=0;i<a.length;i++){
+			checkdate(a[i],b[i]);
+			console.log(b[i]);
+		}
+	
+		$("#submenu").hide();
+		$("#item").click(function(){
+			$("#submenu").slideToggle({width:'200px'},500);
+	
+		});
+		
+		$(function(){
+		$("#checkbox").on("click",function(){
+			var val=$("#checkbox").attr("value");
+			if (val==0){
+				$("#checkbox").attr("value",1);
+			}
+		})
+	});
+	function validateForm(){
+       let x1=document.forms["register-form"]["password"].value
+       let x2=document.forms["register-form"]["password1"].value
+        if (x1==x2){
+            return true;
+        }else {
+            
+            document.getElementById("warning").innerHTML="Password is not equal!!!";   
+            return false;
+        }
+    }
+	
+	</script>
+	
 </body>
 </html>
