@@ -4,26 +4,21 @@
 
     {% block content%}
 		{% if not success %}
-	    <h2 class="text-white">Welcome in ToDo app</h2>
+	    <h2 class="text-white my-4">Welcome in ToDo app</h2>
 		<h5 class="text-white text-center my-5">Please login or register </h5>
 		{% endif %}
 		
 	{% if success %}
 	<div class="container"style="margin-top:20px" >
-		<div style="height: 20px"></div>
 		<p><h1 class="text-center " style="text-decoration: underline;color:white">List of Tasks</h1></p>
-		<div style="height: 10px"></div>
-		<form action="/todolist">
-			
+		
+		<form action="/todolist" class="my-3">	
 			<div class="form-row">
 				<a href="/add"class="btn btn-success col-sm-1" name="add">Add</a>
-				<a href="" onclick="print()" class="btn btn-light col-1 offset-10 " name="Print">Print</a>
+				<a href="" onclick="print()" class="btn btn-light col-sm-1 offset-10" name="Print">Print</a>
 			</div>
-				
-		
-		<hr>
 		<div id=menu>
-		 	<div id="item" class="btn btn-warning">Filter</div>
+		 	<div id="item" class="btn btn-warning my-3">Filter</div>
 			<div id="submenu">
 			    <input type="submit" name="submit" value="Savedate" class="col-sm-1 btn btn-primary">					
 				<input type="submit" name="submit" value="History" class="col-sm-1  btn btn-danger">
@@ -32,7 +27,8 @@
 				
 		</div>
 		</form>
-		<div class="row" >
+		
+		<div class="row my-4" >
 			<!--<div class="col-sm-1">#</div>-->
 			<div class="col-md-7 text-white">Task:</div>
 			<div class="col-md-2 text-white">Deadline:</div>
@@ -59,9 +55,9 @@
 			    
   				{% endif %}
   				
-				<a href="/edit?id={{record[0]}}"  class="col-1 btn btn-success" name="edit">Edit</a>
+				<a href="/edit?id={{record[0]}}"  class="col-md-1 btn btn-success" name="edit">Edit</a>
 
-  				<a href="/del?id={{ record[0] }}"  class="col-1 btn btn-danger" name="delete" >Delete</a>
+  				<a href="/del?id={{ record[0] }}"  class="col-md-1 btn btn-danger" name="delete" >Delete</a>
 
   				
   			</div>
@@ -69,7 +65,7 @@
   			{% endfor %}
   			
 		</form>
-		</div>
+	</div>
 		{% endif %}
 		
 	

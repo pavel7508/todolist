@@ -7,7 +7,7 @@ ul{
     overflow: hidden;
     margin:0px;
     padding:0px;
-    line-height: 3rem;
+    line-height: 2rem;
 }
 li{
     list-style-type:none;
@@ -39,9 +39,9 @@ h2{
     margin-top:15px;
 }
 
-@media only screen and (max-width: 576px) {
-  a.col-1 {
-    max-width: 15%;
+@media only screen and (max-width: 762px) {
+  a.col-md-1 {
+    width: 25%;
 
   }
 }

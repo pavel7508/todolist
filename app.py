@@ -28,6 +28,7 @@ def home():
     #resp=make_response(render_template("index.html",records=records))
     #resp.set_cookie('sessid',get_sessid(),time.time()+2000)
     #return resp
+
 @app.route("/todolist", methods=["POST","GET"])
 def todolist():
     user_id=session["user_id"]
@@ -45,6 +46,7 @@ def todolist():
         print(user)
         return render_template("index.html",user=user,records=records,success=True)
     return render_template("index.html",success=False) 
+
 #add task   
 @app.route("/add")
 def add_task():
@@ -84,8 +86,7 @@ def edit():
         return render_template("edit.html",record=record)
 
 @app.route("/login", methods=["POST","GET"])
-def login():
-    
+def login():   
     if request.method =="POST":
         username=request.form["username"]
         password=request.form["password"]
@@ -114,7 +115,7 @@ def register():
         else :
             flash("Username already exists")
             return render_template("index.html")
-    return render_template("registr.html")
+    return render_template("registr.html",register=True)
 
 @app.route("/logout")
 def logout():
