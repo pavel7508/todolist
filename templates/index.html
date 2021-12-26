@@ -9,62 +9,63 @@
 		{% endif %}
 		
 	{% if success %}
-	<div class="container"style="margin-top:20px" >
-		<p><h1 class="text-center " style="text-decoration: underline;color:white">List of Tasks</h1></p>
-		
-		<form action="/todolist" class="my-3">	
-			<div class="form-row">
-				<a href="/add"class="btn btn-success col-sm-1" name="add">Add</a>
-				<a href="" onclick="print()" class="btn btn-light col-sm-1 offset-10" name="Print">Print</a>
-			</div>
-		<div id=menu>
-		 	<div id="item" class="btn btn-warning my-3">Filter</div>
-			<div id="submenu">
-			    <input type="submit" name="submit" value="Savedate" class="col-sm-1 btn btn-primary">					
-				<input type="submit" name="submit" value="History" class="col-sm-1  btn btn-danger">
-				<input type="submit" name="submit" value="All" class="col-sm-1  btn btn-success">
-			</div>
+	<div class="container mt-4" >
+		<p><h1 class="text-center text-white text-decoration " >List of Tasks</h1></p>
+		<div class="justify-content-center">
+			<form action="/todolist" class="my-3">	
+				<div class="form-row text-center">
+					<a href="/add"class="btn btn-success col-sm-1 offset-1" name="add">Add</a>
+					<a href="" onclick="print()" class="btn btn-light col-sm-1 offset-8" name="Print">Print</a>
+				</div>
+				<div id=menu>
+					<div id="item" class="btn btn-warning  offset-1 my-3">Filter</div>
+					<div id="submenu">
+						<input type="submit" name="submit" value="Savedate" class="col-sm-1 btn btn-primary">					
+						<input type="submit" name="submit" value="History" class="col-sm-1  btn btn-danger">
+						<input type="submit" name="submit" value="All" class="col-sm-1  btn btn-success">
+					</div>
 				
-		</div>
-		</form>
+				</div>
+			</form>
 		
-		<div class="row my-4" >
-			<!--<div class="col-sm-1">#</div>-->
-			<div class="col-md-7 text-white">Task:</div>
-			<div class="col-md-2 text-white">Deadline:</div>
-			<div class="col-md-1 text-white">Done:</div>
-			
-		</div>
-		<hr>
+			<div class="row my-4" >
+				<!--<div class="col-sm-1">#</div>-->
+				<div class="col-md-5 offset-1 text-white">Task:</div>
+				<div class="col-md-2 text-white">Deadline:</div>
+				<div class="col-md-1 text-white">Done:</div>
+				
+			</div>
 		
-		<form action="" >
-			{% for record in records %}
-			<div class="input-group datum2">
-				<input type="text" readonly="readonly" class="form-control col-md-7" name="ukol" id="ukol" value="{{ record[1] }}" >
+		
+			<form action="" class="text-center">
+				{% for record in records %}
+				<div class="input-group datum2">
+					<input type="text" readonly="readonly" class="form-control col-md-5 offset-1" name="ukol" id="ukol" value="{{ record[1] }}" >
 
-  				<input type="text" readonly="readonly" class="form-control-date col-md-2 datum3"  name="execdate"  value="{{ record[2] }}">
-  				
-				<!--<input type="text" readonly="readonly" value="{{ record[0] }}" name="id" class=" form-control col-sm-1">-->
-				{% if record[3]==1 %}
-				
-  					<input type="checkbox" value=1 disabled checked id="checkbox"  class=" form-control col-md-1  ifchecked">
-			
-  				{% else %}
+					<input type="text" readonly="readonly" class="form-control-date col-md-2  datum3"  name="execdate"  value="{{ record[2] }}">
 					
-  					<input type="checkbox" value=0 disabled id="checkbox" class=" form-control col-md-1 ifchecked">
-			    
-  				{% endif %}
-  				
-				<a href="/edit?id={{record[0]}}"  class="col-md-1 btn btn-success" name="edit">Edit</a>
+					<!--<input type="text" readonly="readonly" value="{{ record[0] }}" name="id" class=" form-control col-sm-1">-->
+					{% if record[3]==1 %}
+					
+						<input type="checkbox" value=1 disabled checked id="checkbox"  class=" form-control col-md-1  ifchecked">
+				
+					{% else %}
+						
+						<input type="checkbox" value=0 disabled id="checkbox" class=" form-control col-md-1 ifchecked">
+					
+					{% endif %}
+					
+					<a href="/edit?id={{record[0]}}"  class="col-md-1 btn btn-success" name="edit">Edit</a>
 
-  				<a href="/del?id={{ record[0] }}"  class="col-md-1 btn btn-danger" name="delete" >Delete</a>
+					<a href="/del?id={{ record[0] }}"  class="col-md-1 btn btn-danger" name="delete" >Delete</a>
 
-  				
-  			</div>
-  			<br>
-  			{% endfor %}
-  			
-		</form>
+					
+				</div>
+				<br>
+				{% endfor %}
+				
+			</form>
+		</div>
 	</div>
 		{% endif %}
 		
