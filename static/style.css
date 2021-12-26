@@ -44,6 +44,10 @@ h2{
     width: 20%;
 
   }
+  input.col-md-1{
+      width: 20%;
+  }
+
 }
 /* login.html */
 h3{

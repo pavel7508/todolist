@@ -25,7 +25,7 @@
 <body>
     {% if not success %}
 	
-		<ul class="nav justify-content-center">
+		<ul class="nav fixed-top  justify-content-center">
 			<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 			<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 			{% if not register %}
@@ -47,13 +47,13 @@
 		{% endif %}
 
 		{% if success %}
-			<ul class="nav justify-content-center">
+			<ul class=" nav fixed-top justify-content-center">
 				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 				<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 				{% if user %}
 				<li class="nav-item" ><a class="nav-link" href="/logout">Logout</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"><img src="images/pozadi.jpg" alt = "{{ user }}"  data-member-id="78477" class="member-card circle thumbnail-32"></a> </li>
+				<li class="nav-item"><a class="nav-link rounded-circle" href="#"><img src="images/pozadi.jpg" alt = "{{ user }}"></a> </li>
 				{% endif %}
 			</ul>
         
@@ -68,6 +68,8 @@
 		{% endif %}
 
     {% block content %}{% endblock %}
+	
+	{% include "_footer.html" %}
 	<script>
 		function checkdate(odstavec,ifchecked){
 			datum1=new Date(odstavec.value);

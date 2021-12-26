@@ -50,6 +50,7 @@ def todolist():
 #add task   
 @app.route("/add")
 def add_task():
+    user=session.get("user",None)
     user_id=session["user_id"]
     if request.args.get("submit")=="Save":
         task=request.args.get("task")
@@ -57,7 +58,7 @@ def add_task():
         create_db.insert_record(task,execdate,0,user_id)
     
         return redirect(url_for("todolist"))
-    return render_template("add.html")
+    return render_template("add.html",success=True,user=user)
 
 #delete task
 @app.route("/del")
