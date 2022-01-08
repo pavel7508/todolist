@@ -1,5 +1,8 @@
 body {
-    background-color: rgb(28, 26, 41);
+    
+
+        background-image: linear-gradient(to right ,rgb(41, 112, 122),rgb(21, 57, 104),rgba(104, 65, 139, 0.534));
+    
 }
 /*index.html menu */
 ul{
@@ -58,9 +61,7 @@ h3{
 
 #login-form{
     text-align: center;
-    position: absolute;
-    left:50%;
-    transform: translate(-50%, 0);
+    transform: translate(0, 0);
     }
 #username,#password,#password1,#email{
     line-height: 3rem;

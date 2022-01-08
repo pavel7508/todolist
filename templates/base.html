@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About app</title>
+    <title>Todo list</title>
     <link rel="stylesheet" href='{{ url_for("static" ,filename="style.css") }}'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -17,9 +17,7 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
-   body {
-	background-color: rgb(28, 26, 41);
-    }
+  
 </style>
 </head>
 <body>
@@ -49,15 +47,14 @@
 		{% if success %}
 			<ul class=" nav fixed-top justify-content-center">
 				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-				<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="/about" >About</a></li>
 				<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 				{% if user %}
 				<li class="nav-item" ><a class="nav-link" href="/logout">Logout</a></li>
-				<li class="nav-item"><a class="nav-link rounded-circle" href="#"><img src="images/pozadi.jpg" alt = "{{ user }}"></a> </li>
+				<li class="nav-item"><a class="nav-link " href="#"><img src="C:\Users\zymap\OneDrive\Dokumenty\GitHub\todolist\images\profile.png" alt = "{{ user }}"></a></li>
 				{% endif %}
 			</ul>
-        
-	
+			
 		{% with messages=get_flashed_messages() %}
 				{% if messages %}
 					{% for messages in messages  %}

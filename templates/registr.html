@@ -1,14 +1,15 @@
 {% extends "base.html" %}
     {% block content %}
     <div style="margin-top: 80px;"></div>
-    <form name="register-form" method="POST" action="{{url_for('register')}}" onsubmit="return validateForm() " >
-        <div id="login-form">
-            <h3>Register:</h3>
-            <input type="text" name="username" id="username" placeholder="Enter your username" required><br>
-            <input type="password" name="password" id="password" placeholder="Enter password" required><br>
-            <input type="password" name="password1" id="password1" placeholder="Re-enter password" required><br>
-            <div id="warning"></div>
-            <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
-            <input type="submit" class="btn btn-light btn-lg" value="Send" name="login-submit">
-        </div>
+        <form name="register-form" method="POST" action="{{url_for('register')}}" onsubmit="return validateForm() " >
+            <div id="login-form">
+                <h3>Register:</h3>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required><br>
+                <input type="password" name="password" id="password" placeholder="Enter password" required><br>
+                <input type="password" name="password1" id="password1" placeholder="Re-enter password" required><br>
+                <div id="warning"></div>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
+                <input type="submit" class="btn btn-light btn-lg" value="Send" name="login-submit">
+            </div>
+        </form>
     {% endblock %}
