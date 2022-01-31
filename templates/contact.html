@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="form ">
+        <h3>Contact form</h3>
+        <form action="/contact" method="POST" class="" id="contact-form">
+            <h4 class="text-white">Insert your email:</h4>
+            <input type="email" name="email" id="email1" class="" placeholder="Please your email"><br>
+            <h4 class="text-white">Insert your note:</h4>
+            <textarea name="text" id="note-area" cols="40" rows="3"></textarea><br>
+            <button type="submit" name="submit-note" class="btn btn-success mt-2">Odeslat</button>
+        </form>
+    </div>
+    <div id="comments" class="text-white">
+        <h4>New comments</h4>
+        {% for comment in note_record %}
+            <div class=" p-2">
+                <span class="comment">{{ comment [1] }}</span> :
+                <span class="comment bg-white text-dark">{{ comment[2] }}</span><br>
+            </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+{% include "_footer.html" %}

@@ -3,14 +3,21 @@ import datetime
 
 print("Připojení do databáze ok")
 
-#create table
-def create_table():
+#create table task
+def create_table_task():
     con=sqlite3.connect("db/todolist.db")
     cur=con.cursor()
     cur.execute('''CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY AUTOINCREMENT ,task TEXT,execdate NUMERIC,ok INTEGER)''')
     con.commit()
     con.close() 
-    
+#create table note
+def create_table_note():
+    con=sqlite3.connect("db/todolist.db")
+    cur=con.cursor()
+    cur.execute('''CREATE TABLE IF NOT EXISTS note(id INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT,note TEXT)''')
+    con.commit()
+    con.close()
+
 #insert record into table    
 def insert_record(*record_list):
     con=sqlite3.connect("package/db/todolist.db")
@@ -23,7 +30,6 @@ def insert_record(*record_list):
 def get_data(user,col="id"):
     con=sqlite3.connect("package/db/todolist.db")
     cur=con.cursor()
-    print(user)
     if col=="savedate":
         sql="SELECT * FROM tasks WHERE user_id=? and ok=0 ORDER BY id"
         cur.execute(sql,(user,))
@@ -81,12 +87,19 @@ def del_record(expression):
     cur.execute(sql,(expression,))
     con.commit()
     con.close() 
-    
+#insert comment into the table
+def insert_note(email,note):
+    con=sqlite3.connect("package/db/todolist.db")
+    cur=con.cursor()
+    cur.execute("INSERT INTO note(email,note) VALUES(?,?)",(email,note))
+    con.commit()
+    con.close()
 
-#insert_record("inventura","2021-11-11",0,now)
-#set_data("hhhhhhhhhhh","konec",4)
-#del_record(10)
-#set_data("ok",1,12)
-  
-
-    
+#select five last comment
+def comments():
+    con=sqlite3.connect("package/db/todolist.db")
+    cur=con.cursor()
+    cur.execute("SELECT * FROM note order by id desc LIMIT 3")
+    note_record=cur.fetchall()
+    con.close()
+    return note_record

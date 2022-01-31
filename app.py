@@ -1,3 +1,4 @@
+
 from flask import Flask,request,url_for,session,render_template,make_response,flash,redirect
 import os,time
 from package import create_db
@@ -135,6 +136,20 @@ def about():
         return render_template("about.html",user=user,success=True)
     return render_template("about.html",success=False)
 
+#contact template
+@app.route("/contact",methods=["GET","POST"])
+def contact():
+    user=session.get("user",None)
+    note_record=create_db.comments()
+    if request.method=="POST":
+        data=request.form
+        email=data["email"]
+        note=data["text"]
+        create_db.insert_note(email,note)
+        note_record=create_db.comments()
+    if user:
+        return render_template("contact.html",user=user,note_record=note_record,success=True)
+    return render_template("contact.html",note_record=note_record) 
     
 if __name__ == "__main__":
     app.run(debug=True,port=3000)
