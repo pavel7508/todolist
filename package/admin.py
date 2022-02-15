@@ -12,9 +12,7 @@ def login(username,password):
         return False
     else:
         password_hash=record[2]
-        print(password_hash)
         password=check_password_hash(password_hash,password)
-        print(password)
         user_id=record[0]
         con.close()
         if password :

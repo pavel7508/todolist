@@ -87,6 +87,7 @@ def del_record(expression):
     cur.execute(sql,(expression,))
     con.commit()
     con.close() 
+    
 #insert comment into the table
 def insert_note(email,note):
     con=sqlite3.connect("package/db/todolist.db")
